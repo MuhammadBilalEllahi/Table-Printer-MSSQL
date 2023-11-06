@@ -17,6 +17,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 
+import static DBTablePrinter.DBTablePrinter.printResultSet;
+import static DBTablePrinter.DBTablePrinter.printTable;
 import static JDBC.SingeltonJDBC.connection;
 
 public class Test {
@@ -29,10 +31,16 @@ public class Test {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.println("> Press 1 to delete  DATA FROM TABLE\n" +
-                "Press 2 to Read Stored Information ");
+        System.out.println(">\nPress 0 to Display Table\nPress 1 to delete  DATA FROM TABLE\n" +
+                "Press 2 to Read Stored Information\n" +
+                "Press 3 to Enter New Data ");
         int option = scanner.nextInt();
 
+        if(option == 0){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM Billing");
+            DBTablePrinter.printResultSet(resultSet, 100);
+        }
         if(option == 1){
             String sql = "TRUNCATE TABLE Billing";
             Statement statement = connection.createStatement();
@@ -79,7 +87,7 @@ public class Test {
             resultSet.close();*/
 
         }
-        else
+          if(option == 3)
         {
             System.out.println("Enter A Billing ID: ");
             int id = scanner.nextInt();

@@ -23,7 +23,7 @@ public class SingeltonJDBC {
 
             String url = "jdbc:sqlserver://localhost:1433;database=TempTry;encrypt=true;trustServerCertificate=true;";
             String user = "sa";
-            String password = "reallyStrongPwd123";
+            String password = "yourPassword69@";
 
             try {
                 connection = DriverManager.getConnection(url,user,password);
